@@ -13,7 +13,7 @@ button#action{width:100%;min-height:68px;border:0;border-radius:10px;cursor:poin
 .aviso-icon{font-size:22px; color:#00e9f5; margin-bottom:6px;}.aviso-title{color:#00e9f5; font-weight:900; font-size:18px; margin:0 0 8px;}.aviso-text{color:#fff; font-weight:900; font-size:15px; font-family:Arial,sans-serif;}
 .hidden{display:none!important}
 </style></head>
-<body><main class="app"><header><h1>POCOYO <span>OFC</span></h1><p class="subtitle">GENERADOR DE KEYS- POCOYO OFC</p></header><section class="panel">
+<body><main class="app"><header><h1>POCOYO <span>OFC</span></h1><p class="subtitle">FREE KEY — 365 DAYS</p></header><section class="panel">
 <div id="postInfo" class="hidden">
 <div class="info"><span class="label">KEY CREADA POR</span><div class="value">POCOYO OFC</div></div>
 <div class="info"><span class="label">TIPO DE KEY</span><div class="value">FREE / GRATIS</div></div>
@@ -32,4 +32,16 @@ if(document.referrer && document.referrer.includes('blacklink.site')){ localStor
 const last = parseInt(localStorage.getItem('hanzx_from_blacklink') || '0');
 const expired = Date.now() - last > 70000;
 if(expired){ window.location.href = REDIRECT_URL; }
-try{ const nav = performance.getEntriesByType('navigation')[0]; const isReload = nav? nav.type === '
+try{ const nav = performance.getEntriesByType('navigation')[0]; const isReload = nav? nav.type === 'reload' : performance.navigation.type === 1; if(isReload){ window.location.href = REDIRECT_URL; } }catch(e){}
+setTimeout(()=>{ window.location.href = REDIRECT_URL; }, 60000);
+const KEY='20K', action=document.getElementById('action'), keyBox=document.getElementById('key'), keySection=document.getElementById('keySection'), postInfo=document.getElementById('postInfo');let generated=false;
+action.addEventListener('click',async()=>{
+if(!generated){
+action.disabled=true; action.innerHTML='GENERANDO KEY<span class="dots"><span>.</span><span>.</span><span>.</span></span>';
+await new Promise(r=>setTimeout(r,1500));
+keyBox.textContent=KEY; postInfo.classList.remove('hidden'); keySection.classList.remove('hidden');
+action.disabled=false; action.textContent='COPIAR KEY'; generated=true; return
+}
+try{ if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(KEY)}else{const t=document.createElement('textarea');t.value=KEY;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();if(!ok)throw Error()} action.textContent='✓ KEY COPIADA'; setTimeout(()=>action.textContent='COPIAR KEY',1800) }catch(e){ action.textContent='COPIAR KEY'; alert('MANTÉN PULSADA 20K PARA COPIAR'); }
+});
+</script></body></html>
